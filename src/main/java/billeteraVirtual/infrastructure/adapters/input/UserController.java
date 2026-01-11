@@ -1,4 +1,5 @@
 package billeteraVirtual.infrastructure.adapters.input;
+
 import billeteraVirtual.domain.ports.input.UserServicePort;
 import billeteraVirtual.domain.model.User;
 import billeteraVirtual.infrastructure.adapters.input.dto.CreateUserRequest;
@@ -6,10 +7,9 @@ import billeteraVirtual.infrastructure.adapters.input.dto.CreateUserResponse;
 import billeteraVirtual.infrastructure.adapters.input.mapper.UserMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
@@ -21,6 +21,15 @@ public class UserController {
     public UserController(UserServicePort userService, UserMapper userMapper) {
         this.userService = userService;
         this.userMapper = userMapper;
+    }
+
+    // Aqui estoy retornando la entidad porque no quiero crear los dtos y mapper
+    // pero esta practica esta mal ya que exponemos nuestro modelo de dominio
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUser(@PathVariable UUID id) {
+        return userService.getById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -38,4 +47,6 @@ public class UserController {
         // respondemos al usuario
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+
 }
