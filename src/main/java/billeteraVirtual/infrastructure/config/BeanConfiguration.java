@@ -1,7 +1,7 @@
 package billeteraVirtual.infrastructure.config;
 
-import billeteraVirtual.application.services.UserServiceImpl;
-import billeteraVirtual.infrastructure.adapters.output.UserListRepositoryAdapter;
+import billeteraVirtual.application.services.UserService;
+import billeteraVirtual.infrastructure.adapters.output.UserListRepositoryPortAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
 
     @Bean
-    public UserServiceImpl createUserService(){
-        return new UserServiceImpl(new UserListRepositoryAdapter());
+    public UserService createUserService(){
+        return new UserService(new UserListRepositoryPortAdapter());
     }
 }

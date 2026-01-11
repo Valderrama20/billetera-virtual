@@ -1,15 +1,15 @@
 package billeteraVirtual.infrastructure.adapters.output;
 
 import billeteraVirtual.domain.model.User;
-import billeteraVirtual.domain.ports.output.IUserRepository;
+import billeteraVirtual.domain.ports.output.UserRepositoryPort;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserListRepositoryAdapter implements IUserRepository {
+public class UserListRepositoryPortAdapter implements UserRepositoryPort {
     private final List<User> users;
 
-    public UserListRepositoryAdapter(){
+    public UserListRepositoryPortAdapter(){
         this.users = new ArrayList<User>();
     }
 

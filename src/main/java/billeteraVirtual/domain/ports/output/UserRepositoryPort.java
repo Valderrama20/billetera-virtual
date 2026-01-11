@@ -2,6 +2,6 @@ package billeteraVirtual.domain.ports.output;
 
 import billeteraVirtual.domain.model.User;
 
-public interface IUserRepository {
+public interface UserRepositoryPort {
     User save(User user);
 }

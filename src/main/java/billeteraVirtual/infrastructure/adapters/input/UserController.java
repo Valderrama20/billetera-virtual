@@ -1,5 +1,5 @@
 package billeteraVirtual.infrastructure.adapters.input;
-import billeteraVirtual.domain.ports.input.IUserService;
+import billeteraVirtual.domain.ports.input.UserServicePort;
 import billeteraVirtual.domain.model.User;
 import billeteraVirtual.infrastructure.adapters.input.dto.CreateUserRequest;
 import billeteraVirtual.infrastructure.adapters.input.dto.CreateUserResponse;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-    private final IUserService userService;
+    private final UserServicePort userService;
     private final UserMapper userMapper;
 
-    public UserController(IUserService userService, UserMapper userMapper) {
+    public UserController(UserServicePort userService, UserMapper userMapper) {
         this.userService = userService;
         this.userMapper = userMapper;
     }
@@ -30,7 +30,7 @@ public class UserController {
         User userToCreate = userMapper.toDomain(request);
 
         // 2. Ejecutamos lógica de negocio
-        User createdUser = userService.createUser(userToCreate);
+        User createdUser = userService.create(userToCreate);
 
         // 3. Transformamos la salida para el cliente
         CreateUserResponse response = userMapper.toResponse(createdUser);
