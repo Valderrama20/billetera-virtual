@@ -6,7 +6,7 @@ import billeteraVirtual.infrastructure.adapters.input.dto.CreateUserResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreateUserMapper {
+public class UserMapper {
 
     public User toDomain(CreateUserRequest request) {
         return new User(
