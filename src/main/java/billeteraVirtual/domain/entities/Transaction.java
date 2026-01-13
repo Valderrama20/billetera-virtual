@@ -1,8 +1,10 @@
-package billeteraVirtual.domain.model;
+package billeteraVirtual.domain.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import billeteraVirtual.domain.enums.TransactionStatus;
+import billeteraVirtual.domain.enums.TransactionType;
 
 /**
  * Representa una transacción financiera entre dos cuentas.

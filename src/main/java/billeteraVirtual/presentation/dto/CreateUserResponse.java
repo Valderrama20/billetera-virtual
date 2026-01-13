@@ -1,10 +1,10 @@
-package billeteraVirtual.infrastructure.adapters.input.dto;
+package billeteraVirtual.presentation.dto;
 
-import billeteraVirtual.domain.model.UserRole;
+import billeteraVirtual.domain.enums.UserRole;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record CreateUserResponse(UUID id, String firstName, String lastName, UserRole role, LocalDateTime updatedAt,
-                                 LocalDateTime createdAt) {
+        LocalDateTime createdAt) {
 }

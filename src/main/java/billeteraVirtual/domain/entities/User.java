@@ -1,7 +1,8 @@
-package billeteraVirtual.domain.model;
+package billeteraVirtual.domain.entities;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+import billeteraVirtual.domain.enums.UserRole;
 
 /**
  * Representa un usuario dentro del sistema de billetera virtual.

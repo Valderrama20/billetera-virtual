@@ -1,11 +1,11 @@
-package billeteraVirtual.domain.ports.output;
+package billeteraVirtual.domain.interfaces.persistence;
 
-import billeteraVirtual.domain.model.User;
+import billeteraVirtual.domain.entities.User;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public interface UserRepositoryPort {
+public interface IUserRepository {
     Optional<User> getById(UUID id);
 
     User save(User user);
@@ -13,5 +13,4 @@ public interface UserRepositoryPort {
     Optional<User> update(User user);
 
     Boolean delete(UUID id);
-
 }

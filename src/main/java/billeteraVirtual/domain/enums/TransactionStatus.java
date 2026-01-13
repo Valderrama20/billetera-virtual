@@ -1,4 +1,4 @@
-package billeteraVirtual.domain.model;
+package billeteraVirtual.domain.enums;
 
 /**
  * Enumeración de los posibles estados de una transacción.

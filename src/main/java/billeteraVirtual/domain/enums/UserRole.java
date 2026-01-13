@@ -1,4 +1,4 @@
-package billeteraVirtual.domain.model;
+package billeteraVirtual.domain.enums;
 
 /**
  * Enumeración de los roles de usuario dentro del sistema.

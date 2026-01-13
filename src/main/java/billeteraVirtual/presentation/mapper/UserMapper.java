@@ -1,8 +1,8 @@
-package billeteraVirtual.infrastructure.adapters.input.mapper;
+package billeteraVirtual.presentation.mapper;
 
-import billeteraVirtual.domain.model.User;
-import billeteraVirtual.infrastructure.adapters.input.dto.CreateUserRequest;
-import billeteraVirtual.infrastructure.adapters.input.dto.CreateUserResponse;
+import billeteraVirtual.domain.entities.User;
+import billeteraVirtual.presentation.dto.CreateUserRequest;
+import billeteraVirtual.presentation.dto.CreateUserResponse;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,8 +13,7 @@ public class UserMapper {
                 request.firstName(),
                 request.lastName(),
                 request.email(),
-                request.password()
-        );
+                request.password());
     }
 
     public CreateUserResponse toResponse(User user) {

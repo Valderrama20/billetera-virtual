@@ -1,10 +1,11 @@
-package billeteraVirtual.infrastructure.adapters.input;
+package billeteraVirtual.presentation.controllers;
 
-import billeteraVirtual.domain.ports.input.UserServicePort;
-import billeteraVirtual.domain.model.User;
-import billeteraVirtual.infrastructure.adapters.input.dto.CreateUserRequest;
-import billeteraVirtual.infrastructure.adapters.input.dto.CreateUserResponse;
-import billeteraVirtual.infrastructure.adapters.input.mapper.UserMapper;
+import billeteraVirtual.domain.interfaces.usecases.user.ICreateUserUseCase;
+import billeteraVirtual.domain.interfaces.usecases.user.IGetUserByIdUseCase;
+import billeteraVirtual.domain.entities.User;
+import billeteraVirtual.presentation.dto.CreateUserRequest;
+import billeteraVirtual.presentation.dto.CreateUserResponse;
+import billeteraVirtual.presentation.mapper.UserMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +16,14 @@ import java.util.UUID;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserServicePort userService;
+    private final ICreateUserUseCase createUserUseCase;
+    private final IGetUserByIdUseCase getUserByIdUseCase;
     private final UserMapper userMapper;
 
-    public UserController(UserServicePort userService, UserMapper userMapper) {
-        this.userService = userService;
+    public UserController(ICreateUserUseCase createUserUseCase, IGetUserByIdUseCase getUserByIdUseCase,
+            UserMapper userMapper) {
+        this.createUserUseCase = createUserUseCase;
+        this.getUserByIdUseCase = getUserByIdUseCase;
         this.userMapper = userMapper;
     }
 
@@ -27,7 +31,7 @@ public class UserController {
     // pero esta practica esta mal ya que exponemos nuestro modelo de dominio
     @GetMapping("/{id}")
     public ResponseEntity<?> getUser(@PathVariable UUID id) {
-        return userService.getById(id)
+        return getUserByIdUseCase.execute(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -39,7 +43,7 @@ public class UserController {
         User userToCreate = userMapper.toDomain(request);
 
         // 2. Ejecutamos lógica de negocio
-        User createdUser = userService.create(userToCreate);
+        User createdUser = createUserUseCase.execute(userToCreate);
 
         // 3. Transformamos la salida para el cliente
         CreateUserResponse response = userMapper.toResponse(createdUser);
@@ -47,6 +51,4 @@ public class UserController {
         // respondemos al usuario
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
-
 }

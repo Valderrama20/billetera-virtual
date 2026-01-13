@@ -1,4 +1,4 @@
-package billeteraVirtual.domain.model;
+package billeteraVirtual.domain.enums;
 
 /**
  * Enumeración de las monedas soportadas para las cuentas.

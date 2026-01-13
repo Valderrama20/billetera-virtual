@@ -1,7 +1,8 @@
-package billeteraVirtual.domain.model;
+package billeteraVirtual.domain.entities;
 
 import java.math.BigDecimal;
 import java.util.UUID;
+import billeteraVirtual.domain.enums.AccountCurrency;
 
 /**
  * Representa una cuenta financiera dentro del sistema de billetera virtual.

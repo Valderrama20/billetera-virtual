@@ -1,17 +1,17 @@
-package billeteraVirtual.infrastructure.adapters.output;
+package billeteraVirtual.infrastructure.persistence.mem;
 
-import billeteraVirtual.domain.model.User;
-import billeteraVirtual.domain.ports.output.UserRepositoryPort;
+import billeteraVirtual.domain.entities.User;
+import billeteraVirtual.domain.interfaces.persistence.IUserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class UserListRepositoryPortAdapter implements UserRepositoryPort {
+public class InMemoryUserRepository implements IUserRepository {
     private final List<User> users;
 
-    public UserListRepositoryPortAdapter() {
+    public InMemoryUserRepository() {
         this.users = new ArrayList<User>();
     }
 
@@ -25,7 +25,6 @@ public class UserListRepositoryPortAdapter implements UserRepositoryPort {
 
         return Optional.empty();
     }
-
 
     @Override
     public User save(User user) {
@@ -45,8 +44,6 @@ public class UserListRepositoryPortAdapter implements UserRepositoryPort {
                     }
                     return existing;
                 });
-
-
     }
 
     @Override
